@@ -1,0 +1,25 @@
+<div class="row">
+    <div class="p-5">
+        <h3 class="text-center">{{ textAction }} usuário</h3>
+    </div>
+
+    <div class="alert alert-{{ colorContentMessage }}" role="alert" *ngIf="hasMessage">
+      <h5>{{ feedbackMessage }}</h5>
+    </div>
+
+    <form #form="ngForm" [formGroup]="createUserForm" role="form" (submit)="save()">
+        <div class="form-group">
+          <label >Nome</label>
+          <input type="text" class="form-control" formControlName="name">
+          <small *ngIf="createUserForm.controls.name.errors?.required && (form.submitted || createUserForm.controls.name.touched)" class="text-danger">Nome deve ser preenchido!</small>
+        </div>
+        <div class="form-group">
+          <label>Trabalho</label>
+          <input type="text" formControlName="job" class="form-control">
+          <small *ngIf="createUserForm.controls.job.errors?.required && (form.submitted || createUserForm.controls.job.touched)" class="text-danger">O trabalho deve ser preenchido!</small>
+        </div>
+        <div class="form-group mt-3">
+            <button type="submit" class="btn btn-primary">{{ textAction }}</button>
+        </div>
+    </form>
+</div>
